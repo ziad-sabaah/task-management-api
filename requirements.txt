@@ -1,0 +1,12 @@
+fastapi==0.115.6
+sqlmodel==0.0.22
+pydantic==2.10.4
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+python-dotenv==1.0.0
+
+# Testing dependencies (install with: pip install pytest httpx)
+pytest==8.0.0
+pytest-asyncio==0.23.5
+httpx==0.26.0
+coverage==7.4.1
