@@ -185,28 +185,6 @@ Once the server is running, you can access:
 - `POST /tasks/bulk/update` - Update multiple tasks at once
 - `POST /tasks/bulk/delete` - Delete multiple tasks at once
 
-## Data Models
-
-### Task Model
-```python
-{
-    "id": 1,                           # Auto-generated primary key
-    "title": "Complete API project",   # Required, max 200 chars
-    "description": "Build FastAPI...", # Optional, max 1000 chars
-    "status": "pending",               # Enum: pending, in_progress, completed, cancelled
-    "priority": "high",                # Enum: low, medium, high, urgent
-    "created_at": "2024-01-01T10:00:00Z", # Auto-generated timestamp
-    "updated_at": "2024-01-01T11:00:00Z", # Auto-updated on changes
-    "due_date": "2024-01-15T23:59:59Z",   # Optional, must be in future
-    "assigned_to": "john.doe"             # Optional, max 100 chars
-}
-```
-
-### Validation Rules
-- **Title**: Cannot be empty or whitespace only, automatically trimmed
-- **Due Date**: Must be in the future if provided
-- **Status/Priority**: Must be valid enum values
-- **Field Lengths**: Enforced maximum lengths for all string fields
 
 ## Data Models
 
@@ -238,82 +216,7 @@ Once the server is running, you can access:
 - `high`
 - `urgent`
 
-## Example API Calls
 
-### Create a Task
-
-```bash
-curl -X POST "http://localhost:8000/tasks" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "title": "Complete FastAPI Assessment",
-       "description": "Build a comprehensive task management API",
-       "priority": "high",
-       "status": "in_progress",
-       "assigned_to": "John Doe",
-       "due_date": "2025-06-29T23:59:59"
-     }'
-```
-
-### Get All Tasks with Filtering
-
-```bash
-# Get all tasks
-curl -X GET "http://localhost:8000/tasks"
-
-# Get tasks with filtering and pagination
-curl -X GET "http://localhost:8000/tasks?status=pending&priority=high&skip=0&limit=10"
-
-# Search tasks
-curl -X GET "http://localhost:8000/tasks/search?q=FastAPI"
-```
-
-### Get a Specific Task
-
-```bash
-curl -X GET "http://localhost:8000/tasks/1"
-```
-
-### Update a Task
-
-```bash
-curl -X PUT "http://localhost:8000/tasks/1" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "status": "completed",
-       "description": "Task completed successfully"
-     }'
-```
-
-### Delete a Task
-
-```bash
-curl -X DELETE "http://localhost:8000/tasks/1"
-```
-
-### Bulk Operations
-
-#### Bulk Update Tasks
-```bash
-curl -X POST "http://localhost:8000/tasks/bulk/update" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "task_ids": [1, 2, 3],
-       "update_data": {
-         "status": "completed",
-         "priority": "low"
-       }
-     }'
-```
-
-#### Bulk Delete Tasks
-```bash
-curl -X POST "http://localhost:8000/tasks/bulk/delete" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "task_ids": [1, 2, 3]
-     }'
-```
 
 
 ## Validation Rules
@@ -405,6 +308,7 @@ pytest tests/ -m unit --cov=. --cov-report=term-missing --cov-report=html:htmlco
 ## API Usage Examples
 
 ### Create a Task
+
 ```bash
 curl -X POST "http://localhost:8000/tasks" \
      -H "Content-Type: application/json" \
@@ -412,25 +316,68 @@ curl -X POST "http://localhost:8000/tasks" \
        "title": "Complete FastAPI Assessment",
        "description": "Build a comprehensive task management API",
        "priority": "high",
-       "due_date": "2024-12-31T23:59:59"
+       "status": "in_progress",
+       "assigned_to": "John Doe",
+       "due_date": "2025-06-29T23:59:59"
      }'
 ```
 
 ### Get All Tasks with Filtering
+
 ```bash
-# Get high priority pending tasks
-curl "http://localhost:8000/tasks?status=pending&priority=high"
+# Get all tasks
+curl -X GET "http://localhost:8000/tasks"
 
-# Search tasks with pagination
-curl "http://localhost:8000/tasks?search=python&page=1&page_size=10"
+# Get tasks with filtering and pagination
+curl -X GET "http://localhost:8000/tasks?status=pending&priority=high&skip=0&limit=10"
 
-# Get overdue tasks sorted by due date
-curl "http://localhost:8000/tasks?is_overdue=true&sort_by=due_date&sort_order=asc"
+# Search tasks
+curl -X GET "http://localhost:8000/tasks/search?q=FastAPI"
+```
+
+### Get a Specific Task
+
+```bash
+curl -X GET "http://localhost:8000/tasks/1"
 ```
 
 ### Update a Task
+
 ```bash
 curl -X PUT "http://localhost:8000/tasks/1" \
      -H "Content-Type: application/json" \
-     -d '{"status": "completed", "priority": "medium"}'
+     -d '{
+       "status": "completed",
+       "description": "Task completed successfully"
+     }'
+```
+
+### Delete a Task
+
+```bash
+curl -X DELETE "http://localhost:8000/tasks/1"
+```
+
+### Bulk Operations
+
+#### Bulk Update Tasks
+```bash
+curl -X POST "http://localhost:8000/tasks/bulk/update" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "task_ids": [1, 2, 3],
+       "update_data": {
+         "status": "completed",
+         "priority": "low"
+       }
+     }'
+```
+
+#### Bulk Delete Tasks
+```bash
+curl -X POST "http://localhost:8000/tasks/bulk/delete" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "task_ids": [1, 2, 3]
+     }'
 ```
