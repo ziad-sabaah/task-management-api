@@ -13,7 +13,6 @@ This project fully implements all requirements from the task specification plus 
 - **Data Validation** - Comprehensive Pydantic models with custom validators
 - **Error Handling** - Proper error responses (201, 200, 404, 422, 400)
 - **API Documentation** - Automatic OpenAPI/Swagger documentation
-- **Environment Configuration** - Support for different environments via .env
 
 ### ✅ **Bonus Features Implemented**
 - **Advanced Filtering** - Multiple simultaneous filters (status, priority, assigned_to, dates)
@@ -23,14 +22,9 @@ This project fully implements all requirements from the task specification plus 
 - **Pagination** - Page-based pagination with metadata (has_next, has_previous)
 - **Unit Tests** - Comprehensive test coverage (85%+) with pytest
 - **Docker Support** - Containerized application with Dockerfile
-- **Clean Architecture** - Modular design with routers, CRUD separation
-- **Builder Pattern** - Advanced filtering using TaskFilterBuilder pattern
 
 ### 🧪 **Testing & Quality Assurance**
-- **Comprehensive Test Suite** - Unit tests for all components (CRUD, models, endpoints)
 - **Test Coverage** - 85%+ code coverage with pytest and coverage
-- **Integration Tests** - End-to-end API testing
-- **Test Fixtures** - Reusable test data and database setup
 
 
 ## Tech Stack
@@ -230,8 +224,6 @@ The API implements comprehensive validation:
 
 2. **Due Date Validation:**
    - Must be in the future (if provided)
-   - Handles both timezone-aware and timezone-naive datetimes
-   - Uses ISO 8601 format
 
 3. **Field Length Validation:**
    - Description: Max 1000 characters
