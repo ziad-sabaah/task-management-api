@@ -21,17 +21,16 @@ This project fully implements all requirements from the task specification plus 
 - **Search** - Full-text search in title and description
 - **Bulk Operations** - Efficient bulk update and delete operations
 - **Pagination** - Page-based pagination with metadata (has_next, has_previous)
-- **Unit Tests** - Comprehensive test coverage (95%+) with pytest
+- **Unit Tests** - Comprehensive test coverage (85%+) with pytest
 - **Docker Support** - Containerized application with Dockerfile
 - **Clean Architecture** - Modular design with routers, CRUD separation
 - **Builder Pattern** - Advanced filtering using TaskFilterBuilder pattern
 
 ### 🧪 **Testing & Quality Assurance**
 - **Comprehensive Test Suite** - Unit tests for all components (CRUD, models, endpoints)
-- **Test Coverage** - 95%+ code coverage with pytest and coverage
+- **Test Coverage** - 85%+ code coverage with pytest and coverage
 - **Integration Tests** - End-to-end API testing
 - **Test Fixtures** - Reusable test data and database setup
-- **CI/CD Ready** - Test configuration in pyproject.toml
 
 
 ## Tech Stack
