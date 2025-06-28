@@ -83,7 +83,7 @@ BuGuard_Task/
 1. **Clone the repository**
    ```bash
    git clone https://github.com/ziad-sabaah/task-management-api
-   cd BuGuard_Task
+   cd task-management-api
    ```
 
 2. **Create virtual environment**
