@@ -82,7 +82,7 @@ BuGuard_Task/
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ziad-sabaah/task-management-api
    cd BuGuard_Task
    ```
 
